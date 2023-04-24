@@ -170,8 +170,6 @@ btn.addEventListener("click", () => {
         case "determinant":
             // call determinant function
             const det = determinant(matrice);
-            // display the result in p 
-            // check if p exists before creating it
             if (document.getElementById("p")) {
                 resDiv.removeChild(p);
             }

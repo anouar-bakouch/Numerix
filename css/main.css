@@ -45,7 +45,8 @@ main > div:nth-child(1){
     padding : 17px;
     border-radius : 5px;
     border : 1px solid #0f4293;
-    width : 50%;
+    width : 47%;
+    margin-left : 7px;
 }
 
 
