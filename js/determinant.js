@@ -17,3 +17,5 @@ let determinant = (matrix)=>{
     return det;
 }
 
+export default determinant;
+

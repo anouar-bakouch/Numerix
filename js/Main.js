@@ -1,4 +1,9 @@
-// import the chart.js 
+// import All the methods
+
+import determinant from "./determinant.js";
+import inverse from "./inverse.js"
+
+
 const ctx = document.getElementById('myChart');
 
 // create a new select displaying the numerical methods
@@ -8,8 +13,11 @@ let methodesDivisees = ["decomposition LU","decomposition cholesky","gauss elimi
 let methodesIteratives = ["Jacobi","Gauss-Seidel"];
 let methodesNonLineaires = ["Newton","dichotomie","point fixe"];
 let simpleMethods = ["determinant","inverse"]
-
+let nSelect = document.createElement("select"); 
+nSelect.id = "mathMet";
 let select = document.getElementById("select");
+let matrix = [];
+
 let init = ()=>{
     
     let selected = document.getElementById("select").value;
@@ -33,12 +41,10 @@ let init = ()=>{
                 document.getElementById("matrix").appendChild(div);
                 div_new.appendChild(div);
             }
-   
     }  
     document.getElementById("matrix").appendChild(div_new);
-    let nSelect = document.createElement("select"); 
-    nSelect.id = "mathMet";
-    document.getElementById("matrix").appendChild(nSelect);
+
+    document.getElementById("form").appendChild(nSelect);
     let integrationMethodsOptGroup = document.createElement("optgroup");
     integrationMethodsOptGroup.label = "integration"
     let interpolationMethodsOptGroup = document.createElement("optgroup");
@@ -61,7 +67,6 @@ let init = ()=>{
         });
 
         interpolationMethods.forEach((method) => {
-            let select2 = document.createElement("select");
             let option = document.createElement("option");
             option.value = method;
             option.textContent = method;
@@ -103,7 +108,14 @@ let init = ()=>{
         nSelect.appendChild(methodesIterativesOptGroup);
         nSelect.appendChild(methodesNonLineairesOptGroup);
         nSelect.appendChild(simpleMethodsOptGroup);
+
+        for (let j = 0; j < selected; j++) { 
+            for (let i = 0; i < matrix[j].length; i++) {
+              matrix[j][i] = Number(document.getElementById(`input${i}`).value);
+            }
+        }
 }
+
 
 
 select.addEventListener("change", ()=>{
@@ -116,5 +128,62 @@ select.addEventListener("change", ()=>{
     init();
 });
 
+document.getElementById("mathMet").addEventListener('change',()=>{
 
+    // Get the selected value from the <select> element
+    const selectedMethod = document.getElementById("mathMet").value;
+
+    // Check the selected method and call the corresponding function
+    switch(selectedMethod) {
+        case "Simpson":
+            // call Simpson function
+            break;
+        case "Trapeze":
+            // call Trapeze function
+            break;
+        case "lagrange":
+            // call lagrange function
+            break;
+        case "difference divisees":
+            // call difference divisees function
+            break;
+        case "decomposition LU":
+            // call decomposition LU function
+            break;
+        case "decomposition cholesky":
+            // call decomposition cholesky function
+            break;
+        case "gauss elimination":
+            // call gauss elimination function
+            break;
+        case "Jacobi":
+            // call Jacobi function
+            break;
+        case "Gauss-Seidel":
+            // call Gauss-Seidel function
+            break;
+        case "Newton":
+            // call Newton function
+            break;
+        case "dichotomie":
+            // call dichotomie function
+            break;
+        case "point fixe":
+            // call point fixe function
+            break;
+        case "determinant":
+            // call determinant function
+            const det = determinant(matrix);
+            console.log(`Determinant: ${det}`);
+            break;
+        case "inverse":
+            // call inverse function
+            const inv = inverse(matrix);
+            console.log(`Inverse: ${inv}`);
+            break;
+        default:
+            console.log("Unknown method selected.");
+            break;
+    }
+})
 

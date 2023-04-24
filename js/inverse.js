@@ -1,6 +1,6 @@
 
 
-inverse = (matrix)=>{
+let inverse = (matrix)=>{
     let det = determinant(matrix);
     let inv = [];
     if(det != 0){
@@ -26,3 +26,5 @@ inverse = (matrix)=>{
     }
     return inv;
 }
+
+export default inverse;
