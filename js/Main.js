@@ -2,22 +2,28 @@
 
 let select = document.getElementById("select");
 let init = ()=>{
+    
     let selected = document.getElementById("select").value;
-let div_new = document.createElement("div");
-div_new.id = "form";
+    let div_new = document.createElement("div");
+    div_new.id = "form";
 
-    for (let i = 0; i < selected; i++) {
-        let input = document.createElement("input");
-        input.type = "text";
-        input.name = "input" + i;
-        input.id = "input" + i;
-        input.placeholder = "input" + i;
-        div_new.appendChild(input);
-        document.getElementById("matrix").appendChild(div_new);
-    }
-    // delete the previous form if it exists
-    if (document.getElementById("form")) {
-        document.getElementById("matrix").removeChild(document.getElementById("form"));
+        for(let j = 0;j<selected;j++){
+            // create div based on the selected value
+            let div = document.createElement("div");
+            div.id = "div" + j;
+            div_new.appendChild(div);
+            // create input based on the selected * selected value
+            for (let i = 0; i < selected; i++) {
+                let input = document.createElement("input");
+                input.type = "text";
+                input.name = "input" + i;
+                input.id = "input" + i;
+                div.appendChild(input);
+                document.getElementById("matrix").appendChild(div);
+            }
+            
+            document.getElementById("matrix").appendChild(div_new);
     }
 }
-select.addEventListener("change", init);
+
+
