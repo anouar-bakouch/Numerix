@@ -126,6 +126,10 @@ select.addEventListener("change", () => {
 
 btn.addEventListener("click", () => {
     const selectedMethod = document.getElementById("mathMet").value;
+    let resDiv = document.getElementById("res");
+    let p = document.createElement("p");
+    p.id = "p";
+    resDiv.appendChild(p);
     switch (selectedMethod) {
         case "Simpson":
             // call Simpson function
@@ -164,8 +168,14 @@ btn.addEventListener("click", () => {
             // call point fixe function
             break;
         case "determinant":
+            // call determinant function
             const det = determinant(matrice);
-            console.log(`Determinant: ${det}`);
+            // display the result in p 
+            // check if p exists before creating it
+            if (document.getElementById("p")) {
+                resDiv.removeChild(p);
+            }
+            p.textContent = `Determinant: ${det}`;
             break;
         case "inverse":
             // call inverse function
@@ -177,4 +187,3 @@ btn.addEventListener("click", () => {
             break;
     }
 });
-

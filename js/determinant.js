@@ -1,21 +1,32 @@
 // on implemente le determinant 
 
-let determinant = (matrix)=>{
-    let det = 0;
-    // pour les matrices carrées
-    if(matrix.length == matrix[0].length){
-        for(let i=0; i<matrix.length; i++){
-            let subMatrix = [];
-            for(let j=0; j<matrix.length; j++){
-                if(j != i){
-                    subMatrix.push(matrix[j]);
-                }
-            }
-            det += Math.pow(-1, i)*matrix[i][0]*determinant(subMatrix);
-        }
+function determinant(matrix) {
+    // Check if the matrix is square
+    if (!matrix.every(row => row.length === matrix.length)) {
+        return null;
     }
-    return det;
-}
+    // Initialize the determinant
+    let det = 0;
 
-export default determinant;
+    // Base case for 2x2 matrix
+    if (matrix.length === 2) {
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    }
 
+    // Loop through each element in the top row
+    for (let i = 0; i < matrix.length; i++) {
+        // Create a submatrix without the top row and the current column
+        let submatrix = matrix.slice(1).map(row => row.filter((_, j) => j !== i));
+        // Calculate the determinant of the submatrix
+        let subdet = determinant(submatrix);
+        // Add the element in the top row and the determinant of the submatrix
+        // multiplied by the appropriate coefficient
+        det += matrix[0][i] * subdet * (i % 2 === 0 ? 1 : -1);
+    }
+
+    // Return the determinant
+    return abs(det);
+  }
+  
+  export default determinant;
+  
