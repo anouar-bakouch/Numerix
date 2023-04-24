@@ -82,3 +82,9 @@ select > option {
     margin : 10px;
 }
 
+main > div:nth-child(2) {
+
+    width : 47%
+
+}
+

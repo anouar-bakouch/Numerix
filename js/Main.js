@@ -1,28 +1,13 @@
 // import the chart.js 
-
-
 const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
-
-
+// create a new select displaying the numerical methods
+let integrationMethods = ["Simpson","Trapeze"];
+let interpolationMethods = ["lagrange","difference divisees"];
+let methodesDivisees = ["decomposition LU","decomposition cholesky","gauss elimination"];
+let methodesIteratives = ["Jacobi","Gauss-Seidel"];
+let methodesNonLineaires = ["Newton","dichotomie","point fixe"];
+let simpleMethods = ["determinant","inverse"]
 
 let select = document.getElementById("select");
 let init = ()=>{
@@ -53,9 +38,24 @@ let init = ()=>{
     document.getElementById("matrix").appendChild(div_new);
 }
 
+let displayMethods = () => {
+    
+    let nSelect = document.createElement("select");
+    nSelect.id = "mathMet"
+    let integrationMethodsOctGroup = document.createElement("optgroup");
+    let interpolationMethodsOctGroup = document.createElement("optgroup");
+    let simpleMethodsOctGroup = document.createElement("optgroup");
+    let NLMethodsOctGroup = document.createElement("optgroup");
+
+    document.getElementById("mathMet").
+
+}
+
 select.addEventListener("change", ()=>{
     let form = document.getElementById("form");
     if(form) form.remove();
     init();
 });
+
+
 
