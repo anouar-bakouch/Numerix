@@ -15,15 +15,23 @@ let init = ()=>{
             // create input based on the selected * selected value
             for (let i = 0; i < selected; i++) {
                 let input = document.createElement("input");
-                input.type = "text";
+                input.type = "number";
+                input.min = 0;
+                input.max = 100;
                 input.name = "input" + i;
                 input.id = "input" + i;
                 div.appendChild(input);
                 document.getElementById("matrix").appendChild(div);
+                div_new.appendChild(div);
             }
-            
-            document.getElementById("matrix").appendChild(div_new);
-    }
+   
+    }  
+    document.getElementById("matrix").appendChild(div_new);
 }
 
+select.addEventListener("change", ()=>{
+    let form = document.getElementById("form");
+    if(form) form.remove();
+    init();
+});
 

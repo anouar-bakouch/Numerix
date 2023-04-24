@@ -64,6 +64,7 @@ select > option {
     width : 50%
 }
 
+
 #form {
     display : flex;
     justify-content : center;
@@ -74,11 +75,10 @@ select > option {
     padding : 17px;
 } 
 
-#form > input {
+#form > div > input {
     padding : 7px;
     border : 1px solid #0f4293;
     border-radius : 7px;
     margin : 10px;
-    width : 100%;
 }
 
