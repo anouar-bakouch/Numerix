@@ -36,21 +36,22 @@ let init = ()=>{
    
     }  
     document.getElementById("matrix").appendChild(div_new);
-}
-
-
-let nSelect = document.createElement("select");
-nSelect.id = "mathMet";
-document.getElementById("matrix").appendChild(nSelect);
-let displayMethods = (x) => {    
+    let nSelect = document.createElement("select"); 
+    nSelect.id = "mathMet";
+    document.getElementById("matrix").appendChild(nSelect);
     let integrationMethodsOptGroup = document.createElement("optgroup");
+    integrationMethodsOptGroup.label = "integration"
     let interpolationMethodsOptGroup = document.createElement("optgroup");
-    let methodesDiviseesOptGroup = document.createElement("optgroup");
+    interpolationMethodsOptGroup.label = "interpolation"
+    let methodesDirectesOptGroup = document.createElement("optgroup");
+    methodesDirectesOptGroup.label = "Methodes Directes"
     let methodesIterativesOptGroup = document.createElement("optgroup");
+    methodesIterativesOptGroup.label = "Methodes iteratives"
     let methodesNonLineairesOptGroup = document.createElement("optgroup");
+    methodesNonLineairesOptGroup.label = "Methodes Non Linéaires"
     let simpleMethodsOptGroup = document.createElement("optgroup");
+    simpleMethodsOptGroup.label = "methodes simples"
 
-    if(x){
         // Fill each optgroup element with its corresponding array
         integrationMethods.forEach((method) => {
             let option = document.createElement("option");
@@ -60,6 +61,7 @@ let displayMethods = (x) => {
         });
 
         interpolationMethods.forEach((method) => {
+            let select2 = document.createElement("select");
             let option = document.createElement("option");
             option.value = method;
             option.textContent = method;
@@ -70,7 +72,7 @@ let displayMethods = (x) => {
             let option = document.createElement("option");
             option.value = method;
             option.textContent = method;
-            methodesDiviseesOptGroup.appendChild(option);
+            methodesDirectesOptGroup.appendChild(option);
         });
 
         methodesIteratives.forEach((method) => {
@@ -97,22 +99,20 @@ let displayMethods = (x) => {
         // Append all optgroups to the select element
         nSelect.appendChild(integrationMethodsOptGroup);
         nSelect.appendChild(interpolationMethodsOptGroup);
-        nSelect.appendChild(methodesDiviseesOptGroup);
+        nSelect.appendChild(methodesDirectesOptGroup);
         nSelect.appendChild(methodesIterativesOptGroup);
         nSelect.appendChild(methodesNonLineairesOptGroup);
         nSelect.appendChild(simpleMethodsOptGroup);
-    }
 }
-
-nSelect.addEventListener('change',()=>{
-    const selectedOption = nSelect.value;
-    console.log("Selected option is: " + selectedOption);
-})
 
 
 select.addEventListener("change", ()=>{
     let form = document.getElementById("form");
-    if(form) form.remove();
+    let select = document.getElementById("mathMet");
+    if(form || select)  {
+        form.remove(); 
+        select.remove();
+    }
     init();
 });
 
