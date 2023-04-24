@@ -38,18 +38,77 @@ let init = ()=>{
     document.getElementById("matrix").appendChild(div_new);
 }
 
-let displayMethods = () => {
-    
-    let nSelect = document.createElement("select");
-    nSelect.id = "mathMet"
-    let integrationMethodsOctGroup = document.createElement("optgroup");
-    let interpolationMethodsOctGroup = document.createElement("optgroup");
-    let simpleMethodsOctGroup = document.createElement("optgroup");
-    let NLMethodsOctGroup = document.createElement("optgroup");
 
-    document.getElementById("mathMet").
+let nSelect = document.createElement("select");
+nSelect.id = "mathMet";
+document.getElementById("matrix").appendChild(nSelect);
+let displayMethods = (x) => {    
+    let integrationMethodsOptGroup = document.createElement("optgroup");
+    let interpolationMethodsOptGroup = document.createElement("optgroup");
+    let methodesDiviseesOptGroup = document.createElement("optgroup");
+    let methodesIterativesOptGroup = document.createElement("optgroup");
+    let methodesNonLineairesOptGroup = document.createElement("optgroup");
+    let simpleMethodsOptGroup = document.createElement("optgroup");
 
+    if(x){
+        // Fill each optgroup element with its corresponding array
+        integrationMethods.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            integrationMethodsOptGroup.appendChild(option);
+        });
+
+        interpolationMethods.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            interpolationMethodsOptGroup.appendChild(option);
+        });
+
+        methodesDivisees.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            methodesDiviseesOptGroup.appendChild(option);
+        });
+
+        methodesIteratives.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            methodesIterativesOptGroup.appendChild(option);
+        });
+
+        methodesNonLineaires.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            methodesNonLineairesOptGroup.appendChild(option);
+        });
+
+        simpleMethods.forEach((method) => {
+            let option = document.createElement("option");
+            option.value = method;
+            option.textContent = method;
+            simpleMethodsOptGroup.appendChild(option);
+        });
+
+        // Append all optgroups to the select element
+        nSelect.appendChild(integrationMethodsOptGroup);
+        nSelect.appendChild(interpolationMethodsOptGroup);
+        nSelect.appendChild(methodesDiviseesOptGroup);
+        nSelect.appendChild(methodesIterativesOptGroup);
+        nSelect.appendChild(methodesNonLineairesOptGroup);
+        nSelect.appendChild(simpleMethodsOptGroup);
+    }
 }
+
+nSelect.addEventListener('change',()=>{
+    const selectedOption = nSelect.value;
+    console.log("Selected option is: " + selectedOption);
+})
+
 
 select.addEventListener("change", ()=>{
     let form = document.getElementById("form");
