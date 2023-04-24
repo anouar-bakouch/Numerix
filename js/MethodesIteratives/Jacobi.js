@@ -1,6 +1,6 @@
 
 
-jacobi = function (A, b, x0, epsilon, maxIter) {
+let jacobi = function (A, b, x0, epsilon, maxIter) {
     var n = A.length;
     var x = new Array(n);
     var i, j, k;

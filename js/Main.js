@@ -1,18 +1,18 @@
 // import All the methods
 import determinant from "./determinant.js";
 import inverse from "./inverse.js";
-import DifferenceDivisees from "interpolation/differenceDivisees.js";
-import Lagrange from "interpolation/lagrange.js";
-import DecompositionLU from "decomposition/lu.js";
-import DecompositionCholesky from "decomposition/cholesky.js";
-import GaussElimination from "decomposition/gaussElimination.js";
-import Jacobi from 'MethodesIteratives/Jacobi.js';
-import GaussSeidel from 'MethodesIteratives/GaussSeidel.js';
-import Dichotomie from 'MethodesNonLineaires/Dichotomie.js';
-import Newton from 'MethodesNonLineaires/Newton.js';
-import PointFixe from 'MethodesNonLineaires/PointFixe.js';
-
-
+// import DifferenceDivisees from "./Interpolation/DifferenceDivisees.js";
+import lagrange from "../js/Interpolation/Lagrange.js";
+import DecompositionLU from "./MethodesDirectes/DecompositionLU.js";
+import DecompositionCholesky from "./MethodesDirectes/DecompositionCholesky.js";
+import GaussElimination from "./MethodesDirectes/GaussElimination.js";
+import Jacobi from './MethodesIteratives/Jacobi.js';
+import GaussSeidel from './MethodesIteratives/GaussSeidel.js';
+import Dichotomie from './Systèmes Non Linéaires/Dichotomie.js';
+import Newton from './Systèmes Non Linéaires/NewtonNdim.js';
+import PointFixe from './Systèmes Non Linéaires/PointFixe.js';
+import Simpson from './Integration/Simpson.js';
+import Trapeze from './Integration/Trapeze.js';
 
 const ctx = document.getElementById('myChart');
 
@@ -150,7 +150,6 @@ btn.addEventListener("click", () => {
     }
 switch (selectedMethod) {
   case "Simpson":
-    // call Simpson function
     break;
   case "Trapeze":
     // call Trapeze function
@@ -163,6 +162,50 @@ switch (selectedMethod) {
     break;
   case "decomposition LU":
     // call decomposition LU function
+    let lu = new DecompositionLU(matrice);
+    let l = lu.getL();
+    let u = lu.getU();
+    let p = lu.getP();
+    // display the res using chart.js
+    let data = {
+      labels: ["L", "U", "P"],
+      datasets: [
+        {
+          label: "L",
+          data: l,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "U",
+          data: u,
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "P",
+          data: p,
+          backgroundColor: "rgba(255, 206, 86, 0.2)",
+          borderColor: "rgba(255, 206, 86, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+    let ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+    
     break;
   case "decomposition cholesky":
     // call decomposition cholesky function

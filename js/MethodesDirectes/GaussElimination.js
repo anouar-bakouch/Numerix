@@ -1,6 +1,6 @@
 
 
-gaussElimination = function (A, b) {
+let gaussElimination = function (A, b) {
     var n = A.length;
     var x = new Array(n);
     var i, j, k;

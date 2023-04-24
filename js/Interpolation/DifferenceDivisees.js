@@ -1,6 +1,6 @@
 
 
-DifferenceDivisees = function (points) { // points: array of points
+let DifferenceDivisees = (points)=> { // points: array of points
     var n = points.length;
     var i, j;
     var p = 0;
@@ -15,5 +15,6 @@ DifferenceDivisees = function (points) { // points: array of points
     }
     return p;
 }
+
 
 export default DifferenceDivisees;

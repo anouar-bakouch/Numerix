@@ -1,6 +1,6 @@
 
 
-decompositionCholesky = function (matrice) {
+let decompositionCholesky = function (matrice) {
     
         var n = matrice.length;
         var L = new Array(n);

@@ -1,6 +1,6 @@
 
 
-PointFixe = function (f, x0, epsilon, maxIter) {
+let PointFixe = function (f, x0, epsilon, maxIter) {
     var x = new Array(x0.length);
     var i, j, k;
     var m, s;

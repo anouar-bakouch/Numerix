@@ -1,6 +1,6 @@
 
 
-decompositionLU = (A) =>{
+let decompositionLU = (A) =>{
     var n = A.length;
     var L = new Array(n);
     var U = new Array(n);

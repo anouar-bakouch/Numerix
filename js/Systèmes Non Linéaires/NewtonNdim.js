@@ -1,6 +1,6 @@
 
 
-NewtonNdim = function (f, x0, eps, maxIter) {
+let NewtonNdim = function (f, x0, eps, maxIter) {
     var x = new Array(x0.length);
     var i, j, k;
     var m, s;

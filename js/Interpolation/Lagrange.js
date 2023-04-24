@@ -1,6 +1,6 @@
 
 
-lagrange = function (x, y, z) { // x, y: points, z: point to interpolate
+let Lagrange = function (x, y, z) { // x, y: points, z: point to interpolate
     var n = x.length;
     var i, j;
     var p = 0;
@@ -16,4 +16,4 @@ lagrange = function (x, y, z) { // x, y: points, z: point to interpolate
     return p;
 }
 
-export default lagrange;
+export default Lagrange;

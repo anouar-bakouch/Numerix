@@ -1,6 +1,6 @@
 
 
-gaussSeidel = function (A, b, x0, tol, maxIter) {
+let gaussSeidel = function (A, b, x0, tol, maxIter) {
     var n = A.length;
     var x = new Array(n);
     var i, j, k;

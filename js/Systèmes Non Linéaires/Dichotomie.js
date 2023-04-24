@@ -1,6 +1,6 @@
 
 
-dichotomie = function (f, a, b, epsilon) {
+let dichotomie = function (f, a, b, epsilon) {
     var m = (a + b) / 2;
     if (b - a < epsilon) {
         return m;
