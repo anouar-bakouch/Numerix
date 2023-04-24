@@ -22,3 +22,5 @@ PointFixe = function (f, x0, epsilon, maxIter) {
     }
     return x1;
 }
+
+export default PointFixe;

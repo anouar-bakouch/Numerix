@@ -24,3 +24,5 @@ jacobi = function (A, b, x0, epsilon, maxIter) {
     }
     return x;
 }
+
+export default jacobi;

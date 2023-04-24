@@ -24,3 +24,5 @@ gaussElimination = function (A, b) {
     }
     return x;
 }
+
+export default gaussElimination;

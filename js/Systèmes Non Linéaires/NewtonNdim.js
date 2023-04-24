@@ -22,3 +22,5 @@ NewtonNdim = function (f, x0, eps, maxIter) {
     }
     return x1;
 }
+
+export default NewtonNdim;

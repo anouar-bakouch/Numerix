@@ -29,3 +29,5 @@ decompositionCholesky = function (matrice) {
     
         return [L, L.transpose()];
     }
+
+    export default decompositionCholesky;

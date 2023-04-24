@@ -24,3 +24,5 @@ gaussSeidel = function (A, b, x0, tol, maxIter) {
     }
     return x;
 }
+
+export default gaussSeidel;

@@ -15,3 +15,5 @@ DifferenceDivisees = function (points) { // points: array of points
     }
     return p;
 }
+
+export default DifferenceDivisees;

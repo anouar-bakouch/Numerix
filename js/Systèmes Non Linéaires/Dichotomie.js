@@ -12,3 +12,5 @@ dichotomie = function (f, a, b, epsilon) {
         return dichotomie(f, m, b, epsilon);
     }
 }
+
+export default dichotomie;

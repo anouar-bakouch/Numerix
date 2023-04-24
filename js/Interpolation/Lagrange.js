@@ -15,3 +15,5 @@ lagrange = function (x, y, z) { // x, y: points, z: point to interpolate
     }
     return p;
 }
+
+export default lagrange;

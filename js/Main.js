@@ -1,6 +1,18 @@
 // import All the methods
 import determinant from "./determinant.js";
-import inverse from "./inverse.js"
+import inverse from "./inverse.js";
+import DifferenceDivisees from "interpolation/differenceDivisees.js";
+import Lagrange from "interpolation/lagrange.js";
+import DecompositionLU from "decomposition/lu.js";
+import DecompositionCholesky from "decomposition/cholesky.js";
+import GaussElimination from "decomposition/gaussElimination.js";
+import Jacobi from 'MethodesIteratives/Jacobi.js';
+import GaussSeidel from 'MethodesIteratives/GaussSeidel.js';
+import Dichotomie from 'MethodesNonLineaires/Dichotomie.js';
+import Newton from 'MethodesNonLineaires/Newton.js';
+import PointFixe from 'MethodesNonLineaires/PointFixe.js';
+
+
 
 const ctx = document.getElementById('myChart');
 

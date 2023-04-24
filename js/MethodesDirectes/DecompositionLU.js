@@ -32,3 +32,5 @@ decompositionLU = (A) =>{
     }
     return [L, U];
 }
+
+export default decompositionLU;

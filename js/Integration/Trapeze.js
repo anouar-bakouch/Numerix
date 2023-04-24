@@ -10,3 +10,5 @@ let trapeze = (f, a, b, n)=>{
     }
     return s*h;
 }
+
+export default trapeze;

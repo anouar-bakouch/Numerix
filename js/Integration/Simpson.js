@@ -14,3 +14,5 @@ let simpson = (f, a, b, n)=>{
     }
     return s*h/3;
 }
+
+export default simpson;
