@@ -123,65 +123,73 @@ select.addEventListener("change", () => {
     init(selected);
 });
 
+let resDiv = document.getElementById("res");
+let p = document.createElement("p");
+p.id = "p";
+resDiv.appendChild(p);
 
 btn.addEventListener("click", () => {
     const selectedMethod = document.getElementById("mathMet").value;
-    let resDiv = document.getElementById("res");
-    let p = document.createElement("p");
+
+
+    // delete p before adding new content
+    if (p) {
+        p.remove();
+    }
+switch (selectedMethod) {
+  case "Simpson":
+    // call Simpson function
+    break;
+  case "Trapeze":
+    // call Trapeze function
+    break;
+  case "lagrange":
+    // call lagrange function
+    break;
+  case "difference divisees":
+    // call difference divisees function
+    break;
+  case "decomposition LU":
+    // call decomposition LU function
+    break;
+  case "decomposition cholesky":
+    // call decomposition cholesky function
+    break;
+  case "gauss elimination":
+    // call gauss elimination function
+    break;
+  case "Jacobi":
+    // call Jacobi function
+    break;
+  case "Gauss-Seidel":
+    // call Gauss-Seidel function
+    break;
+  case "Newton":
+    // call Newton function
+    break;
+  case "dichotomie":
+    // call dichotomie function
+    break;
+  case "point fixe":
+    // call point fixe function
+    break;
+  case "determinant":
+    // call determinant function
+    const det = determinant(matrice);
+    // display the result in p
+    p = document.createElement("p");
     p.id = "p";
     resDiv.appendChild(p);
-    switch (selectedMethod) {
-        case "Simpson":
-            // call Simpson function
-            break;
-        case "Trapeze":
-            // call Trapeze function
-            break;
-        case "lagrange":
-            // call lagrange function
-            break;
-        case "difference divisees":
-            // call difference divisees function
-            break;
-        case "decomposition LU":
-            // call decomposition LU function
-            break;
-        case "decomposition cholesky":
-            // call decomposition cholesky function
-            break;
-        case "gauss elimination":
-            // call gauss elimination function
-            break;
-        case "Jacobi":
-            // call Jacobi function
-            break;
-        case "Gauss-Seidel":
-            // call Gauss-Seidel function
-            break;
-        case "Newton":
-            // call Newton function
-            break;
-        case "dichotomie":
-            // call dichotomie function
-            break;
-        case "point fixe":
-            // call point fixe function
-            break;
-        case "determinant":
-            // call determinant function
-            const det = determinant(matrice);
-            if (document.getElementById("p")) {
-                resDiv.removeChild(p);
-            }
-            p.textContent = `Determinant: ${det}`;
-            break;
-        case "inverse":
-            // call inverse function
-            const inv = inverse(matrice);
-            console.log(`Inverse: ${inv}`);
-            break;
-        default:
-            console.log("Unknown method selected.");
-            break;
-    }
+    p.textContent = `Determinant: ${det}`;
+    break;
+  case "inverse":
+    // call inverse function
+    const inv = inverse(matrice);
+    console.log(`Inverse: ${inv}`);
+    break;
+  default:
+    console.log("Unknown method selected.");
+    break;
+}
 });
+
