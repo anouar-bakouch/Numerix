@@ -3,7 +3,7 @@ import determinant from "./determinant.js";
 import inverse from "./inverse.js";
 // import DifferenceDivisees from "./Interpolation/DifferenceDivisees.js";
 import lagrange from "../js/Interpolation/Lagrange.js";
-import {DecompositionLU , solveLU} from "./MethodesDirectes/DecompositionLU.js";
+import solveLU from "./MethodesDirectes/DecompositionLU.js";
 import DecompositionCholesky from "./MethodesDirectes/DecompositionCholesky.js";
 import GaussElimination from "./MethodesDirectes/GaussElimination.js";
 import Jacobi from './MethodesIteratives/Jacobi.js';
@@ -161,10 +161,11 @@ switch (selectedMethod) {
     // call difference divisees function
     break;
   case "decomposition LU":
-    let solution = solveLU(A, b);
+    let solution = solveLU(matrice,[1,1,1]);
+    console.log(solution)
     let ctx = document.getElementById('myChart');
     let myChart = new Chart(ctx, {
-      type: 'bar',
+      type: 'scatter',
       data: {
         labels: ['x1', 'x2', 'x3'],
         datasets: [{
@@ -185,14 +186,25 @@ switch (selectedMethod) {
       },
       options: {
         scales: {
-          yAxes: [{
+          xAxes: [{
+            type: 'linear',
+            position: 'bottom',
             ticks: {
-              beginAtZero: true
+              suggestedMin: 0,
+              suggestedMax: 10
+            }
+          }],
+          yAxes: [{
+            type: 'linear',
+            position: 'left',
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 10
             }
           }]
         }
       }
-    }); 
+    });
 
     break;
   case "decomposition cholesky":

@@ -1,5 +1,3 @@
-
-
 let decompositionLU = (A) =>{
     var n = A.length;
     var L = new Array(n);
@@ -33,8 +31,9 @@ let decompositionLU = (A) =>{
     return [L, U];
 }
 
-solveLU = (A, b)=>{
-  let { L, U } = lu(A);
+let solveLU = (A, b)=>{
+  let L = decompositionLU(A)[0];
+  let U = decompositionLU(A)[1];
   let n = A.length;
   let y = new Array(n);
   let x = new Array(n);
@@ -60,4 +59,4 @@ solveLU = (A, b)=>{
   return x;
 }
 
-export {decompositionLU , solveLU};
+export default solveLU;
