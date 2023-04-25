@@ -14,8 +14,6 @@ import PointFixe from './Systèmes Non Linéaires/PointFixe.js';
 import Simpson from './Integration/Simpson.js';
 import Trapeze from './Integration/Trapeze.js';
 
-const ctx = document.getElementById('myChart');
-
 // create a new select displaying the numerical methods
 let integrationMethods = ["Simpson", "Trapeze"];
 let interpolationMethods = ["lagrange", "difference divisees"];
@@ -161,51 +159,84 @@ switch (selectedMethod) {
     // call difference divisees function
     break;
   case "decomposition LU":
-    let solution = solveLU(matrice,[1,1,1]);
+    let solution = solveLU(matrice,[1,1]);
     console.log(solution)
+    p.textContent = "Solution : " + solution;
+    resDiv.appendChild(p);
+    let myChart = null;
+    let container = document.getElementById("container");
+    let canvas = document.createElement("canvas");
+    canvas.id = "myChart";
+    container.appendChild(canvas);
     let ctx = document.getElementById('myChart');
-    let myChart = new Chart(ctx, {
-      type: 'scatter',
-      data: {
-        labels: ['x1', 'x2', 'x3'],
-        datasets: [{
-          label: 'Solution',
-          data: solution,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            type: 'linear',
-            position: 'bottom',
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 10
-            }
-          }],
-          yAxes: [{
-            type: 'linear',
-            position: 'left',
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 10
-            }
-          }]
-        }
-      }
-    });
 
+    if(solution.length == 2){
+    
+      myChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+
+            datasets: [{
+                label: 'Solution',
+                data: [{
+                    x: solution[0],
+                    y: solution[1]
+                }],
+                backgroundColor: [
+
+                    'rgba(255, 99, 132, 0.2)',  
+                ],
+                borderColor: [
+
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1  
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    }
+    // the char will be 3D if the system is 3D
+    else if(solution.length == 3){
+      myChart = new Chart(ctx, {
+        type: 'scatter3d',
+        data: {
+
+            datasets: [{
+                label: 'Solution',
+                data: [{
+                    x: solution[0],
+                    y: solution[1],
+                    z: solution[2]
+                }],
+                backgroundColor: [
+
+                    'rgba(255, 99, 132, 0.2)',
+                ],
+                borderColor: [
+
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    }
+    
     break;
   case "decomposition cholesky":
     // call decomposition cholesky function
