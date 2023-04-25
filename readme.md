@@ -7,4 +7,4 @@ Numerix for Numerical Analysis is a web app for solving numerical analysis probl
 run : http-server ( make sure to be in path/app)
 
 ### capture of the app
- <img src="images/LU-decomposition.png" width="400" height="400">
+ <img src="images/LU-decomposition.png" width="100%" height="400">
