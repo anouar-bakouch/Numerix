@@ -3,7 +3,7 @@ import determinant from "./determinant.js";
 import inverse from "./inverse.js";
 // import DifferenceDivisees from "./Interpolation/DifferenceDivisees.js";
 import lagrange from "../js/Interpolation/Lagrange.js";
-import DecompositionLU from "./MethodesDirectes/DecompositionLU.js";
+import {DecompositionLU , solveLU} from "./MethodesDirectes/DecompositionLU.js";
 import DecompositionCholesky from "./MethodesDirectes/DecompositionCholesky.js";
 import GaussElimination from "./MethodesDirectes/GaussElimination.js";
 import Jacobi from './MethodesIteratives/Jacobi.js';
@@ -161,92 +161,39 @@ switch (selectedMethod) {
     // call difference divisees function
     break;
   case "decomposition LU":
-   // Call decomposition LU function and take L and U 
-let L = [];
-let U = [];
-
-// Assign L and U to the res
-[L , U] = DecompositionLU(matrice);
-
-// Get the canvas element
-let ctx = document.getElementById('myChart').getContext('2d');
-
-let LU = [];
-let table = document.createElement("table")
-
-// Fill LU with L and U
-for (let i = 0; i < L.length; i++) {
-  LU.push({x: L[i], y: U[i]});
-}
-let data = {
-  datasets: [{
-    label: 'L',
-    data: L,
-    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    borderColor: 'rgba(255, 99, 132, 1)',
-    borderWidth: 1,
-    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-    pointBorderColor: '#fff',
-    pointBorderWidth: 1,
-    pointRadius: 4
-  }, {
-    label: 'U',
-    data: U,
-    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-    borderColor: 'rgba(255, 159, 64, 1)',
-    borderWidth: 1,
-    pointBackgroundColor: 'rgba(255, 159, 64, 1)',
-    pointBorderColor: '#fff',
-    pointBorderWidth: 1,
-    pointRadius: 4
-  }]
-};
-
-// Set chart options
-let options = {
-  scales: {
-    xAxes: [{
-      type: 'linear',
-      position: 'bottom',
-      ticks: {
-        beginAtZero: true
+    let solution = solveLU(A, b);
+    let ctx = document.getElementById('myChart');
+    let myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['x1', 'x2', 'x3'],
+        datasets: [{
+          label: 'Solution',
+          data: solution,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+          ],
+          borderWidth: 1
+        }]
       },
-      scaleLabel: {
-        display: true,
-        labelString: 'X-axis label'
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
-    }]
-  }
-};
+    }); 
 
-// Create chart
-let myChart = new Chart(ctx, {
-  type: 'line',
-  data: data,
-  options: options
-});
-
-// Fill table with L and U
-let th = document.createElement("th");
-th.textContent = "L";
-let th2 = document.createElement("th");
-th2.textContent = "U";
-let tr = document.createElement("tr");
-tr.appendChild(th);
-tr.appendChild(th2);
-table.appendChild(tr);
-for (let i = 0; i < L.length; i++) {
-  let tr = document.createElement("tr");
-  let td1 = document.createElement("td");
-  let td2 = document.createElement("td");
-  td1.textContent = L[i];
-  td2.textContent = U[i];
-  tr.appendChild(td1);
-  tr.appendChild(td2);
-  table.appendChild(tr);
-}
-
-    document.getElementById("tableau").appendChild(table);
     break;
   case "decomposition cholesky":
     // call decomposition cholesky function

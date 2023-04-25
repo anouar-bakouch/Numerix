@@ -33,4 +33,31 @@ let decompositionLU = (A) =>{
     return [L, U];
 }
 
-export default decompositionLU;
+solveLU = (A, b)=>{
+  let { L, U } = lu(A);
+  let n = A.length;
+  let y = new Array(n);
+  let x = new Array(n);
+
+  // Résolution de Ly = b
+  for (let i = 0; i < n; i++) {
+    let s = 0;
+    for (let j = 0; j < i; j++) {
+      s += L[i][j] * y[j];
+    }
+    y[i] = b[i] - s;
+  }
+
+  // Résolution de Ux = y
+  for (let i = n - 1; i >= 0; i--) {
+    let s = 0;
+    for (let j = i + 1; j < n; j++) {
+      s += U[i][j] * x[j];
+    }
+    x[i] = (y[i] - s) / U[i][i];
+  }
+
+  return x;
+}
+
+export {decompositionLU , solveLU};
