@@ -87,7 +87,7 @@ main > div:nth-child(2) {
     width : 47%
 }
 
-#btn {
+button {
     padding : 7px;
     border : 1px solid #0f4293;
     border-radius : 7px;
@@ -95,6 +95,18 @@ main > div:nth-child(2) {
     background-color : #3f51b5;
     color : #fff;
     cursor : pointer;
+}
+
+p {
+    text-align : center;
+    font-size : 1.2rem;
+    font-weight : bold;
+    color : #0f4293;
+    margin : 10px;
+    border : 1px solid #0f4293;
+    padding : 7px;
+    border-radius : 7px;
+
 }
 
 

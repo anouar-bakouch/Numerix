@@ -26,8 +26,11 @@ nSelect.id = "mathMet";
 let select = document.getElementById("select");
 let matrice = null;
 let btn = document.createElement("button");
+let clearbtn = document.createElement("button");
+clearbtn.textContent = "Clear";
 btn.textContent = "Calculer";
 btn.id = "btn";
+clearbtn.id = "clearbtn";
 let r = 0;
 
 // Initialize matrix inputs
@@ -64,6 +67,7 @@ const init = (selected) => {
     addMethods();
     document.getElementById("form").appendChild(nSelect);
     document.getElementById("form").appendChild(btn);
+    document.getElementById("form").appendChild(clearbtn);
 
 }
 
@@ -139,13 +143,8 @@ p.id = "p";
 resDiv.appendChild(p);
 
 btn.addEventListener("click", () => {
-    const selectedMethod = document.getElementById("mathMet").value;
+  const selectedMethod = document.getElementById("mathMet").value;
 
-
-    // delete p before adding new content
-    if (p) {
-        p.remove();
-    }
 switch (selectedMethod) {
   case "Simpson":
     break;
@@ -159,84 +158,8 @@ switch (selectedMethod) {
     // call difference divisees function
     break;
   case "decomposition LU":
-    let solution = solveLU(matrice,[1,1]);
-    console.log(solution)
-    p.textContent = "Solution : " + solution;
-    resDiv.appendChild(p);
-    let myChart = null;
-    let container = document.getElementById("container");
-    let canvas = document.createElement("canvas");
-    canvas.id = "myChart";
-    container.appendChild(canvas);
-    let ctx = document.getElementById('myChart');
-
-    if(solution.length == 2){
-    
-      myChart = new Chart(ctx, {
-        type: 'scatter',
-        data: {
-
-            datasets: [{
-                label: 'Solution',
-                data: [{
-                    x: solution[0],
-                    y: solution[1]
-                }],
-                backgroundColor: [
-
-                    'rgba(255, 99, 132, 0.2)',  
-                ],
-                borderColor: [
-
-                    'rgba(255, 99, 132, 1)',
-                ],
-                borderWidth: 1  
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    }
-    // the char will be 3D if the system is 3D
-    else if(solution.length == 3){
-      myChart = new Chart(ctx, {
-        type: 'scatter3d',
-        data: {
-
-            datasets: [{
-                label: 'Solution',
-                data: [{
-                    x: solution[0],
-                    y: solution[1],
-                    z: solution[2]
-                }],
-                backgroundColor: [
-
-                    'rgba(255, 99, 132, 0.2)',
-                ],
-                borderColor: [
-
-                    'rgba(255, 99, 132, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    }
-    
+  LU(matrice); 
+  
     break;
   case "decomposition cholesky":
     // call decomposition cholesky function
@@ -279,3 +202,91 @@ switch (selectedMethod) {
 }
 });
 
+clearbtn.addEventListener("click", () => {
+ 
+  // reload the page
+  location.reload();
+
+});
+
+
+let LU = (matrice)=>{
+  let solution = solveLU(matrice,[1,1]);
+  console.log(solution)
+  p.textContent = "Solution : " + solution;
+  resDiv.appendChild(p);
+  let myChart = null;
+  let container = document.getElementById("container");
+  let canvas = document.createElement("canvas");
+  canvas.id = "myChart";
+  container.appendChild(canvas);
+  let ctx = document.getElementById('myChart');
+
+  if(solution.length == 2){
+  
+    myChart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+
+          datasets: [{
+              label: 'Solution',
+              data: [{
+                  x: solution[0],
+                  y: solution[1]
+              }],
+              backgroundColor: [
+
+                  'rgba(255, 99, 132, 0.2)',  
+              ],
+              borderColor: [
+
+                  'rgba(255, 99, 132, 1)',
+              ],
+              borderWidth: 1  
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  }
+  // the char will be 3D if the system is 3D
+  else if(solution.length == 3){
+    myChart = new Chart(ctx, {
+      type: 'scatter3d',
+      data: {
+
+          datasets: [{
+              label: 'Solution',
+              data: [{
+                  x: solution[0],
+                  y: solution[1],
+                  z: solution[2]
+              }],
+              backgroundColor: [
+
+                  'rgba(255, 99, 132, 0.2)',
+              ],
+              borderColor: [
+
+                  'rgba(255, 99, 132, 1)',
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+
+} 
+}
